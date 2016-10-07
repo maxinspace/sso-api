@@ -1,4 +1,4 @@
-SimpleTokenAuthentication.configure do |config| # rubocop:disable Lint/UnusedBlockArgument
+SimpleTokenAuthentication.configure do |config|
   # Configure the session persistence policy after a successful sign in,
   # in other words, if the authentication token acts as a signin token.
   # If true, user is stored in the session and the authentication token and
@@ -32,7 +32,7 @@ SimpleTokenAuthentication.configure do |config| # rubocop:disable Lint/UnusedBlo
   #   Then both the header names identifier key and default value are modified accordingly:
   #     `config.header_names = { super_admin: { phone_number: 'X-SuperAdmin-PhoneNumber' } }`
   #
-  # config.header_names = { user: { authentication_token: 'X-User-Token', email: 'X-User-Email' } }
+  config.header_names = { user: { authentication_token: "X-User-Token", email: "X-User-Email" } }
 
   # Configure the name of the attribute used to identify the user for authentication.
   # That attribute must exist in your model.
@@ -50,7 +50,7 @@ SimpleTokenAuthentication.configure do |config| # rubocop:disable Lint/UnusedBlo
   #
   #   `config.identifiers = { super_admin: 'phone_number', user: 'uuid' }`
   #
-  # config.identifiers = { user: 'email' }
+  config.identifiers = { user: "email" }
 
   # Configure the Devise trackable strategy integration.
   #
