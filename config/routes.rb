@@ -11,5 +11,9 @@ Rails.application.routes.draw do
 
       get "users/confirmation", to: "confirmations#show"
     end
+
+    devise_for :users, only: %i(omniauth_callbacks), controllers: {
+      omniauth_callbacks: "v1/omniauth_callbacks"
+    }
   end
 end
