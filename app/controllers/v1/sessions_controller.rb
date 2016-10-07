@@ -12,7 +12,7 @@ module V1
     def destroy
       current_user.update(authentication_token: nil) if current_user
 
-      head :no_content
+      head :ok
     end
   end
 end
