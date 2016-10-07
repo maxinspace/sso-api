@@ -41,6 +41,8 @@ group :development, :test do
   gem "brakeman"
   gem "rubocop"
   gem "bundler-audit"
+  gem "pry-rails"
+  gem "pry-remote"
 end
 
 group :test do
