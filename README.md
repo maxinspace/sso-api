@@ -1,4 +1,4 @@
-# Skeleton for new Rails 4 application for REST API
+# API for Single-Sign-On React Application
 
 [![Code Climate](https://codeclimate.com/github/fs/rails-base-api.png)](https://codeclimate.com/github/fs/rails-base-api)
 [![Build Status](https://semaphoreci.com/api/v1/fs/rails-base-api/branches/master/shields_badge.svg)](https://semaphoreci.com/fs/rails-base-api)
