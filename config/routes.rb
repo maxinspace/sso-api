@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
       get "users/confirmation", to: "confirmations#show"
       post "users/set_password", to: "passwords#set"
+      put "users/update", to: "registrations#update"
     end
 
     devise_for :users, only: %i(omniauth_callbacks), controllers: {

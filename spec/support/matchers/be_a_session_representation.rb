@@ -5,6 +5,9 @@ RSpec::Matchers.define :be_a_session_representation do
       authentication_token
       email
       password_set_by_user
+      first_name
+      last_name
+      bio
     )
 
     expect(json).to be
