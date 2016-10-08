@@ -8,17 +8,7 @@ class User < ActiveRecord::Base
 
   devise :omniauthable, omniauth_providers: OMNIAUTH_PROVIDERS
 
-  def self.from_omniauth(access_token)
-    data = access_token.info
-    user = User.find_by(email: data["email"])
+  has_many :identities, dependent: :destroy
 
-    # Uncomment the section below if you want users to be created if they don't exist
-    # unless user
-    #     user = User.create(name: data["name"],
-    #        email: data["email"],
-    #        password: Devise.friendly_token[0,20]
-    #     )
-    # end
-    user
-  end
+  validates :first_name, :last_name, length: { maximum: 255 }
 end

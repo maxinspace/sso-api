@@ -10,9 +10,9 @@ module V1
     end
 
     def destroy
-      current_user.update(authentication_token: nil) if current_user
+      SignOut.call(user: current_user)
 
-      head :ok
+      respond_with current_user, status: :ok
     end
   end
 end

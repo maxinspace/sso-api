@@ -9,14 +9,12 @@ class User
       password_confirmation
     ).freeze
 
-    ACCOUNT_UPDATE_PARAMS = (USER_PARAMS << "current_password").freeze
-
     def sign_up
       default_params.permit(USER_PARAMS)
     end
 
     def account_update
-      default_params.permit(ACCOUNT_UPDATE_PARAMS)
+      default_params.permit(USER_PARAMS, :current_password)
     end
   end
 end
