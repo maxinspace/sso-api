@@ -8,6 +8,7 @@ RSpec::Matchers.define :be_a_session_representation do
       first_name
       last_name
       bio
+      identities
     )
 
     expect(json).to be

@@ -35,14 +35,29 @@ resource "Sessions" do
   end
 
   delete "/v1/users/sign_out" do
-    let!(:user) { create :user, email: "user@example.com" }
+    let!(:user) do
+      create :user,
+        email: "user@example.com",
+        authentication_token: "some_token",
+        confirmed_at: Time.current
+    end
 
     header "X-User-Email", "user@example.com"
     header "X-User-Token", "some_token"
 
-    example_request "Sign out" do
+    example "Sign out" do
+      expect(SignOut).to receive(:call).and_call_original
+
       do_request
       expect(response_status).to eq(200)
+    end
+
+    context "when token is missed" do
+      header "X-User-Token", ""
+
+      example_request "Sign out" do
+        expect(response_status).to eq(401)
+      end
     end
   end
 end

@@ -1,11 +1,11 @@
 module V1
   class ConfirmationsController < Devise::ConfirmationsController
-    FRONTEND_URL = ENV["FRONTEND_URL"]
+    acts_as_token_authentication_handler_for User, only: []
 
     def show
-      resource_class.confirm_by_token(params[:confirmation_token])
+      ConfirmByToken.call(token: params[:confirmation_token])
 
-      redirect_to FRONTEND_URL
+      redirect_to Rails.application.secrets.frontend_url
     end
   end
 end
