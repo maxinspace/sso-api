@@ -33,4 +33,16 @@ resource "Sessions" do
       end
     end
   end
+
+  delete "/v1/users/sign_out" do
+    let!(:user) { create :user, email: "user@example.com" }
+
+    header "X-User-Email", "user@example.com"
+    header "X-User-Token", "some_token"
+
+    example_request "Sign out" do
+      do_request
+      expect(response_status).to eq(200)
+    end
+  end
 end
