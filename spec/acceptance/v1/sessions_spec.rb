@@ -46,8 +46,6 @@ resource "Sessions" do
     header "X-User-Token", "some_token"
 
     example "Sign out" do
-      expect(SignOut).to receive(:call).and_call_original
-
       do_request
       expect(response_status).to eq(200)
     end

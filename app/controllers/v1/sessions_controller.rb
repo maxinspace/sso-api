@@ -6,11 +6,12 @@ module V1
 
     def create
       user = AuthenticateUser.call(warden: warden).user
+
       respond_with(user, serializer: SessionSerializer)
     end
 
     def destroy
-      SignOut.call(user: current_user)
+      current_user.update_column(:authentication_token, nil)
 
       respond_with current_user, status: :ok
     end

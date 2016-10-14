@@ -8,10 +8,6 @@ class ApplicationController < ActionController::API
   private
 
   def devise_parameter_sanitizer
-    if resource_class == User
-      User::ParameterSanitizer.new(User, :user, params)
-    else
-      super
-    end
+    User::ParameterSanitizer.new(User, :user, params)
   end
 end

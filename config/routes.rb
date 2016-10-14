@@ -5,16 +5,15 @@ Rails.application.routes.draw do
 
   namespace :v1, defaults: { format: "json" } do
     devise_scope :user do
-      get "users/confirmation", to: "confirmations#show"
-
       post "users/sign_in", to: "sessions#create"
       post "users/sign_up", to: "registrations#create"
-
-      put "users/set_password", to: "passwords#set"
-      put "users/update", to: "registrations#update"
-
       delete "users/sign_out", to: "sessions#destroy"
+
+      get "users/confirmation", to: "confirmations#show"
+
       delete "identities/:provider", to: "identities#destroy"
+
+      resource :user, only: %i(show update)
     end
 
     devise_for :users, only: %i(omniauth_callbacks), controllers: {

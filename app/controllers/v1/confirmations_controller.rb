@@ -3,7 +3,7 @@ module V1
     acts_as_token_authentication_handler_for User, only: []
 
     def show
-      ConfirmByToken.call(token: params[:confirmation_token])
+      User.confirm_by_token(params[:confirmation_token])
 
       redirect_to Rails.application.secrets.frontend_url
     end

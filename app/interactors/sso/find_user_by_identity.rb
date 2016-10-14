@@ -5,16 +5,12 @@ module SSO
     delegate :auth_data, to: :context
 
     def call
-      return unless identity
+      identity = Identity.find_by(uid: uid, provider: provider)
 
-      context.user = identity.user
+      context.user = identity.user if identity
     end
 
     private
-
-    def identity
-      @_identity ||= Identity.find_by(uid: uid, provider: provider)
-    end
 
     def uid
       auth_data["uid"]

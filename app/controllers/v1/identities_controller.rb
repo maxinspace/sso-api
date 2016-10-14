@@ -4,9 +4,8 @@ module V1
 
     def destroy
       identity.destroy
-      current_user.identities.reload
 
-      respond_with current_user
+      respond_with current_user, serializer: ProfileSerializer
     end
   end
 end

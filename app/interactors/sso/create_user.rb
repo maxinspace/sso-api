@@ -5,31 +5,25 @@ module SSO
     delegate :auth_data, to: :context
 
     def call
-      SaveIdentity.call(user: user, auth_data: auth_data)
-
-      context.user = user
+      context.user = create
+      Connect.call(user: context.user, auth_data: auth_data)
+      SaveIdentity.call(auth_data: auth_data, user: context.user)
+      UpdateProfile.call(auth_data: auth_data, user: context.user)
     end
 
     private
 
-    def user
-      @user ||= User.create(
-        first_name: user_info.dig(:first_name),
-        last_name: user_info.dig(:last_name),
-        email: user_info.dig(:email),
+    def create
+      User.create(
+        email: auth_data["info"]["email"],
         password: password,
         password_confirmation: password,
-        password_set_by_user: false,
         confirmed_at: Time.current
       )
     end
 
     def password
       @_password ||= Devise.friendly_token
-    end
-
-    def user_info
-      auth_data.dig(:info)
     end
   end
 end
